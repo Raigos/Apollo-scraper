@@ -1,33 +1,76 @@
-# Apollo Kino Movie Scraper
+# Movie Schedule Data Extraction Project
 
-This Python script scrapes movie schedules for the Apollo Kino website (https://www.apollokino.ee/eng/schedule). It allows you to retrieve movie information, including titles, genres, languages, subtitles, formats, and showtimes for multiple days.
+A Python-based project developed to learn web data extraction and processing. Through this project, I gained hands-on experience with HTTP protocols, data parsing, and Python's ecosystem while creating a tool that collects and organizes movie schedule information.
+
+## Technical Overview
+The project works with several Python libraries and concepts:
+- HTTP request handling with proper headers and error management
+- HTML parsing and data extraction using BeautifulSoup4
+- Command-line interface with argument parsing
+- Structured data organization
+- Date and time operations
 
 ## Prerequisites
+- Python 3.x
+- Required packages:
+    - requests
+    - beautifulsoup4
+    - argparse
+    - datetime
 
-Before running this script, make sure you have Python installed
-
-Run the script using the following command:
+Install all dependencies using:
 ```bash
-python movie_srapper.py
+pip install -r requirements.txt
 ```
- By default, this will scrape movie information for the current day.
 
-To scrape movie information for multiple days, use the `-d` or `--days` argument followed by the number of days you want to scrape. For example:
+## Usage
+The script supports both single-day and multi-day data extraction.
+
+Basic usage for current day:
 ```bash
-python apollo_kino_scraper.py -d 3
+python data_extractor.py
 ```
-This will scrape movie information for the next 3 available days.
 
-## Output
+Extract data for multiple days:
+```bash
+python data_extractor.py -d 3
+```
 
-The script will print the movie information to the console, including:
+The `-d` argument accepts any positive integer to specify the number of days to process.
+
+## Output Structure
+The script generates structured output including:
 - Movie title
-- Genres
-- Language
-- Subtitles
-- Format (e.g., 2D, 3D, IMAX)
-- Showtimes (date, start time, cinema, and screen)
+- Genre categorization
+- Language and subtitle information
+- Format specifications (2D, 3D, IMAX)
+- Schedule details:
+    - Date and time
+    - Location information
+    - Screen assignment
+
+Example output:
+```
+Movies for date: 2024-03-12
+==================================================
+Movie: Example Movie Title
+Genres: Action, Adventure
+Language: English
+Subtitles: Estonian
+Format: 2D
+Showings:
+  - 2024-03-12 19:30 at Cinema Location, Screen 1
+--------------------------------------------------
+```
+
+## Error Handling
+The script includes robust error handling for:
+- Failed HTTP requests
+- Invalid date inputs
+- Parsing errors
+- Network connectivity issues
 
 ## Notes
-
-- The script uses a user agent to mimic a web browser.
+- The script uses a user agent to ensure proper request handling
+- Rate limiting is implemented to avoid overloading servers
+- All times are displayed in local timezone
